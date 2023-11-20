@@ -19,12 +19,21 @@ public class ProdutoService {
   }
 
   public List<Produto> getAll() {
-    log.info("Getting all produtcts");
-    return repository.findAll();
+    log.info("Buscando todos os produtos do banco de dados");
+    List<Produto> produtos = repository.findAll();
+    log.info("Foram encontrados {} produtos no banco de dados", produtos.size());
+    return produtos;
   }
 
   public Produto getById(Long id) {
     log.info("Getting product by id: {}", id);
     return repository.findById(id).get();
+  }
+
+  public int getEstoque(Long id) {
+    log.info("Buscando estoque do produto com id: {}", id);
+    int estoque = repository.findById(id).get().getEstoque();
+    log.info("Estoque do produto com id {} é: {}", id, estoque);
+    return estoque;
   }
 }
