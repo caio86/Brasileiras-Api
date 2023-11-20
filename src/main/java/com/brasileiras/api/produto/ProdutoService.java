@@ -26,7 +26,7 @@ public class ProdutoService {
   }
 
   public Produto getById(Long id) {
-    log.info("Getting product by id: {}", id);
+    log.info("Buscando o produto com id: {}", id);
     return repository.findById(id).get();
   }
 
