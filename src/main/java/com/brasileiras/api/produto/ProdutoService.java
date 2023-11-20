@@ -19,12 +19,12 @@ public class ProdutoService {
   }
 
   public List<Produto> getAll() {
-    log.debug("getting all produtcts");
+    log.info("Getting all produtcts");
     return repository.findAll();
   }
 
   public Produto getById(Long id) {
-    log.info("getting product by id: {}", id);
+    log.info("Getting product by id: {}", id);
     return repository.findById(id).get();
   }
 }
