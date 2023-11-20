@@ -2,11 +2,14 @@ package com.brasileiras.api.produto;
 
 import java.io.Serializable;
 
+import com.brasileiras.api.fornecedor.Fornecedor;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,57 +19,66 @@ public class Produto implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String descricao;
-  private int estoque;
   @Column(unique = true, nullable = false, name = "codigo_barras")
   private long codigo_barras;
-  private double preco;
+  private double valor_compra;
+  private double valor_venda;
+  private int estoque;
+  @ManyToOne
+  private Fornecedor fornecedor;
+
+  public Produto(String descricao, long codigo_barras, double valor_compra, double valor_venda,
+      int estoque,
+      Fornecedor fornecedor) {
+    this.descricao = descricao;
+    this.codigo_barras = codigo_barras;
+    this.valor_compra = valor_compra;
+    this.valor_venda = valor_venda;
+    this.estoque = estoque;
+    this.fornecedor = fornecedor;
+  }
 
   public Produto() {
-  }
-
-  public Produto(String descricao, int estoque, long codigoBarras, double preco) {
-    this.descricao = descricao;
-    this.estoque = estoque;
-    this.codigo_barras = codigoBarras;
-    this.preco = preco;
-  }
-
-  public Produto(Long id, String descrição, int estoque, long codigoBarras, double preco) {
-    this.id = id;
-    this.descricao = descrição;
-    this.estoque = estoque;
-    this.codigo_barras = codigoBarras;
-    this.preco = preco;
-  }
-
-  @Override
-  public String toString() {
-    return "produto [id=" + id + ", descrição=" + descricao + ", codigoBarras=" + codigo_barras + ", preco=" + preco
-        + "]";
   }
 
   public Long getId() {
     return id;
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public String getDescricao() {
     return descricao;
+  }
+
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
   }
 
   public long getCodigo_barras() {
     return codigo_barras;
   }
 
-  public double getPreco() {
-    return preco;
+  public void setCodigo_barras(long codigo_barras) {
+    this.codigo_barras = codigo_barras;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public double getValor_compra() {
+    return valor_compra;
   }
 
-  public void setDescricao(String descricao) {
-    this.descricao = descricao;
+  public void setValor_compra(double valor_compra) {
+    this.valor_compra = valor_compra;
+  }
+
+  public double getValor_venda() {
+    return valor_venda;
+  }
+
+  public void setValor_venda(double valor_venda) {
+    this.valor_venda = valor_venda;
   }
 
   public int getEstoque() {
@@ -77,11 +89,18 @@ public class Produto implements Serializable {
     this.estoque = estoque;
   }
 
-  public void setCodigo_barras(long codigoBarras) {
-    this.codigo_barras = codigoBarras;
+  public Fornecedor getFornecedor() {
+    return fornecedor;
   }
 
-  public void setPreco(double preco) {
-    this.preco = preco;
+  public void setFornecedor(Fornecedor fornecedor) {
+    this.fornecedor = fornecedor;
   }
+
+  @Override
+  public String toString() {
+    return "Produto [id=" + id + ", descricao=" + descricao + ", codigo_barras=" + codigo_barras + ", valor_compra="
+        + valor_compra + ", valor_venda=" + valor_venda + ", estoque=" + estoque + ", fornecedor=" + fornecedor + "]";
+  }
+
 }
