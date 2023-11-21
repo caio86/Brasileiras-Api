@@ -20,7 +20,7 @@ public class Produto implements Serializable {
   private Long id;
   private String descricao;
   @Column(unique = true, nullable = false, name = "codigo_barras")
-  private long codigo_barras;
+  private long codigoBarras;
   private double valor_compra;
   private double valor_venda;
   private int estoque;
@@ -31,7 +31,7 @@ public class Produto implements Serializable {
       int estoque,
       Fornecedor fornecedor) {
     this.descricao = descricao;
-    this.codigo_barras = codigo_barras;
+    this.codigoBarras = codigo_barras;
     this.valor_compra = valor_compra;
     this.valor_venda = valor_venda;
     this.estoque = estoque;
@@ -57,12 +57,12 @@ public class Produto implements Serializable {
     this.descricao = descricao;
   }
 
-  public long getCodigo_barras() {
-    return codigo_barras;
+  public long getCodigoBarras() {
+    return codigoBarras;
   }
 
-  public void setCodigo_barras(long codigo_barras) {
-    this.codigo_barras = codigo_barras;
+  public void setCodigoBarras(long codigo_barras) {
+    this.codigoBarras = codigo_barras;
   }
 
   public double getValor_compra() {
@@ -99,7 +99,7 @@ public class Produto implements Serializable {
 
   @Override
   public String toString() {
-    return "Produto [id=" + id + ", descricao=" + descricao + ", codigo_barras=" + codigo_barras + ", valor_compra="
+    return "Produto [id=" + id + ", descricao=" + descricao + ", codigo_barras=" + codigoBarras + ", valor_compra="
         + valor_compra + ", valor_venda=" + valor_venda + ", estoque=" + estoque + ", fornecedor=" + fornecedor + "]";
   }
 
