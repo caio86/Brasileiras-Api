@@ -36,4 +36,12 @@ public class ProdutoService {
     log.info("Estoque do produto com id {} é: {}", id, estoque);
     return estoque;
   }
+
+  public Produto updateEstoque(Long id, int estoque) {
+    log.info("Atualizando estoque do produto com id: {}", id);
+    Produto produto = repository.findById(id).get();
+    produto.setEstoque(estoque);
+    repository.save(produto);
+    return produto;
+  }
 }
