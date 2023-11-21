@@ -6,7 +6,6 @@ import java.util.List;
 import com.brasileiras.api.fornecedor.Fornecedor;
 import com.brasileiras.api.produto.Produto;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +24,6 @@ public class NotaFiscal {
   private Long id;
   private LocalDate data_de_emissao;
   private double valor_total;
-  @Column(length = 3000)
   @ManyToMany
   @JoinTable(name = "nota_fiscal-produto", joinColumns = @JoinColumn(name = "nota_fiscal_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
   private List<Produto> produtos;
