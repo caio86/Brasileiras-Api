@@ -81,4 +81,12 @@ public class NotaFiscal {
   public void setProdutos(List<Produto> produtos) {
     this.produtos = produtos;
   }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 }
