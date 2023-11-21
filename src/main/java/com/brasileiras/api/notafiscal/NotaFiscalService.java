@@ -35,7 +35,7 @@ public class NotaFiscalService {
       log.info("Criando o fornecedor: {}", fornecedor);
       fornecedorRepository.save(fornecedor);
     } else {
-      Fornecedor fornecedorDb = fornecedorRepository.findByCnpj(fornecedor.getCnpj());
+      Fornecedor fornecedorDb = fornecedorRepository.findByCnpj(fornecedor.getCnpj()).get();
       notaFiscal.setFornecedor(fornecedorDb);
       log.info("Fornecedor {} existe", notaFiscal.getFornecedor());
     }
@@ -50,7 +50,7 @@ public class NotaFiscalService {
         produtoRepository.save(produto);
       } else {
         int estoqueNovo = produto.getEstoque();
-        produto = produtoRepository.findByCodigoBarras(produto.getCodigoBarras());
+        produto = produtoRepository.findByCodigoBarras(produto.getCodigoBarras()).get();
         produto.setEstoque(produto.getEstoque() + estoqueNovo);
         produtoRepository.save(produto);
         log.info("Produto {} existe", produto);
