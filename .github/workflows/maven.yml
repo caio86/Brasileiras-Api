@@ -41,5 +41,8 @@ jobs:
         context: ./
         file: ./docker/Dockerfile
         push: true
+        tags: |
+          ghcr.io/caio86/brasileiras-api:v${{ github.run_number }}
+          ghcr.io/caio86/brasileiras-api:latest
         
     
