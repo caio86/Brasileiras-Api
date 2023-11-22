@@ -11,12 +11,12 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
+    
 
 jobs:
-  build:
-
+  CI:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -27,3 +27,19 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Login on docker
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Docker build app
+      uses: docker/build-and-push-action@v5
+      with:
+        context: ./
+        file: ./docker/Dockerfile
+        push: true
+        
+    
