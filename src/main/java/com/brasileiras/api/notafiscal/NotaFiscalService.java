@@ -34,11 +34,14 @@ public class NotaFiscalService {
       if (!produtoExiste) {
         log.info("Produto não existe");
         log.info("Criando o produto: {}", produto);
+        produto.setValor_venda(produto.getValor_compra() * 1.3);
         produto.setFornecedor(notaFiscal.getFornecedor());
         return produtoRepository.save(produto);
       } else {
         log.info("Produto {} existe", produto);
         Produto produtoDb = produtoRepository.findByCodigoBarras(produto.getCodigoBarras()).get();
+        produtoDb.setValor_compra(Math.max(produto.getValor_compra(), produtoDb.getValor_compra()));
+        produtoDb.setValor_venda(produtoDb.getValor_compra() * 1.3);
         produtoDb.setEstoque(produtoDb.getEstoque() + produto.getEstoque());
         return produtoRepository.save(produtoDb);
       }

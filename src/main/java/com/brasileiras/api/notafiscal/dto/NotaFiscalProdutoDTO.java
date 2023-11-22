@@ -17,6 +17,6 @@ public class NotaFiscalProdutoDTO {
   }
 
   public Produto gerarProduto(Fornecedor fornecedor) {
-    return new Produto(descricao, codigo_barras, valor_compra, valor_compra * 1.3, quantidade, fornecedor);
+    return new Produto(descricao, codigo_barras, valor_compra, 0, quantidade, fornecedor);
   }
 }
