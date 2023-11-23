@@ -26,11 +26,12 @@ public class ContasAPagar {
   public ContasAPagar() {
   }
 
-  public ContasAPagar(NotaFiscal notaFiscal) {
+  public ContasAPagar(NotaFiscal notaFiscal, double valor_total, LocalDate data_de_emissao,
+      LocalDate data_de_vencimento) {
     this.numero_nota_fiscal = notaFiscal;
-    this.valor_total = notaFiscal.getValor_total();
-    this.data_de_emissao = notaFiscal.getData_de_emissao();
-    this.data_de_vencimento = this.data_de_emissao.plusDays(30);
+    this.data_de_emissao = data_de_emissao;
+    this.data_de_vencimento = data_de_vencimento;
+    this.valor_total = valor_total;
   }
 
   public Long getId() {
