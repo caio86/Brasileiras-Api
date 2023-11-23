@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.brasileiras.api.contasapagar.ContasAPagar;
+import com.brasileiras.api.contasapagar.ContasAPagarRepository;
 import com.brasileiras.api.fornecedor.Fornecedor;
 import com.brasileiras.api.fornecedor.FornecedorRepository;
 import com.brasileiras.api.produto.Produto;
@@ -19,13 +21,15 @@ public class NotaFiscalService {
   private final NotaFiscalRepository repository;
   private final FornecedorRepository fornecedorRepository;
   private final ProdutoRepository produtoRepository;
+  private final ContasAPagarRepository contasAPagarRepository;
 
   @Autowired
   public NotaFiscalService(NotaFiscalRepository repository, FornecedorRepository fornecedorRepository,
-      ProdutoRepository produtoRepository) {
+      ProdutoRepository produtoRepository, ContasAPagarRepository contasAPagarRepository) {
     this.repository = repository;
     this.fornecedorRepository = fornecedorRepository;
     this.produtoRepository = produtoRepository;
+    this.contasAPagarRepository = contasAPagarRepository;
   }
 
   private List<Produto> checkProdutos(NotaFiscal notaFiscal) {
@@ -66,6 +70,10 @@ public class NotaFiscalService {
 
     log.info("Checando se Produtos existem");
     notaFiscal.setProdutos(checkProdutos(notaFiscal));
+
+    log.info("Realizando um lançamento em contas a pagar");
+    ContasAPagar contasAPagar = new ContasAPagar(notaFiscal);
+    contasAPagarRepository.save(contasAPagar);
 
     log.info("Criando notafiscal: {}", notaFiscal);
     NotaFiscal nf = repository.save(notaFiscal);
