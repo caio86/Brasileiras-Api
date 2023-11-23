@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/produtos")
+@RequestMapping("/api")
 public class ProdutoController {
 
   private final ProdutoService service;
@@ -20,7 +20,7 @@ public class ProdutoController {
     this.service = service;
   }
 
-  @GetMapping
+  @GetMapping("/produtos")
   public ResponseEntity<List<Produto>> getAll() {
     List<Produto> produtos = service.getAll();
     return new ResponseEntity<>(produtos, HttpStatus.OK);
