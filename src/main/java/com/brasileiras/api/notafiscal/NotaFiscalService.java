@@ -71,15 +71,15 @@ public class NotaFiscalService {
     log.info("Checando se Produtos existem");
     notaFiscal.setProdutos(checkProdutos(notaFiscal));
 
+    log.info("Criando notafiscal: {}", notaFiscal);
+    NotaFiscal nf = repository.save(notaFiscal);
+    log.info("Nota Fiscal criada com sucesso");
+
     log.info("Realizando um lançamento em contas a pagar");
     ContasAPagar contasAPagar = new ContasAPagar(notaFiscal, notaFiscal.getValor_total(),
         notaFiscal.getData_de_emissao(),
         notaFiscal.getData_de_emissao().plusDays(30));
     contasAPagarRepository.save(contasAPagar);
-
-    log.info("Criando notafiscal: {}", notaFiscal);
-    NotaFiscal nf = repository.save(notaFiscal);
-    log.info("Nota Fiscal criada com sucesso");
     return nf;
   }
 }
