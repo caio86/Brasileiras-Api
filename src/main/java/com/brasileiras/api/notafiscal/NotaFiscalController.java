@@ -21,7 +21,7 @@ public class NotaFiscalController {
   }
 
   @PostMapping
-  public ResponseEntity<NotaFiscal> create(@RequestBody NotaFiscalDTO dto) {
+  public ResponseEntity<NotaFiscal> criar(@RequestBody NotaFiscalDTO dto) {
     NotaFiscal notaFiscal = service.create(dto.gerarNotaFiscal());
     return new ResponseEntity<NotaFiscal>(notaFiscal, HttpStatus.CREATED);
   }
