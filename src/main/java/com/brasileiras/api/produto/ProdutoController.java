@@ -27,9 +27,15 @@ public class ProdutoController {
     return new ResponseEntity<>(produtos, HttpStatus.OK);
   }
 
+  @GetMapping("/produtos/{id}")
+  public ResponseEntity<Produto> obterPorId(@PathVariable Long id) {
+    Produto produto = service.getById(id);
+    return new ResponseEntity<>(produto, HttpStatus.OK);
+  }
+
   @GetMapping("/estoque/{id}")
-  public ResponseEntity<Integer> obterEstoque(@PathVariable Long id) {
+  public ResponseEntity<String> obterEstoque(@PathVariable Long id) {
     int estoque = service.getEstoque(id);
-    return new ResponseEntity<>(estoque, HttpStatus.OK);
+    return new ResponseEntity<>("O estoque do produto de id: " + id + " é: " + estoque + "", HttpStatus.OK);
   }
 }
