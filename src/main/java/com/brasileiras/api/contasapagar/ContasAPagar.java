@@ -18,7 +18,7 @@ public class ContasAPagar {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @OneToOne
-  private NotaFiscal numero_nota_fiscal;
+  private NotaFiscal nota_fiscal;
   private double valor_total;
   private LocalDate data_de_emissao;
   private LocalDate data_de_vencimento;
@@ -28,7 +28,7 @@ public class ContasAPagar {
 
   public ContasAPagar(NotaFiscal notaFiscal, double valor_total, LocalDate data_de_emissao,
       LocalDate data_de_vencimento) {
-    this.numero_nota_fiscal = notaFiscal;
+    this.nota_fiscal = notaFiscal;
     this.data_de_emissao = data_de_emissao;
     this.data_de_vencimento = data_de_vencimento;
     this.valor_total = valor_total;
@@ -42,12 +42,12 @@ public class ContasAPagar {
     this.id = id;
   }
 
-  public NotaFiscal getNumero_nota_fiscal() {
-    return numero_nota_fiscal;
+  public NotaFiscal getNota_fiscal() {
+    return nota_fiscal;
   }
 
-  public void setNumero_nota_fiscal(NotaFiscal numero_nota_fiscal) {
-    this.numero_nota_fiscal = numero_nota_fiscal;
+  public void setNota_fiscal(NotaFiscal nota_fiscal) {
+    this.nota_fiscal = nota_fiscal;
   }
 
   public double getValor_total() {
@@ -76,7 +76,7 @@ public class ContasAPagar {
 
   @Override
   public String toString() {
-    return "ContasAPagar [id=" + id + ", numero_nota_fiscal=" + numero_nota_fiscal + ", valor_total=" + valor_total
+    return "ContasAPagar [id=" + id + ", nota_fiscal=" + nota_fiscal + ", valor_total=" + valor_total
         + ", data_de_emissao=" + data_de_emissao + ", data_de_vencimento=" + data_de_vencimento + "]";
   }
 }
