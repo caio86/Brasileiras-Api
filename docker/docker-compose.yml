@@ -4,9 +4,6 @@ services:
   api:
     container_name: brasileiras-api
     image: ghcr.io/caio86/brasileiras-api
-    build:
-      context: ../
-      dockerfile: ./docker/Dockerfile
     ports:
       - "8080:8080"
     depends_on:
